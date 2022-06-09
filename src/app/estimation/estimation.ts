@@ -1,9 +1,13 @@
-export interface Estimation {
+export class Estimation {
   id? : string;
   estimator: string;
-  title: string;
-  complexity: number;
-  effort: number;
-  uncertainty: number;
-  risk: number;
+  complexity: number = 0;
+  effort: number  = 0;
+  uncertainty: number = 0;
+  risk: number = 0;
+
+  constructor(estimator: string){
+    this.estimator = estimator;
+  }
+
 }

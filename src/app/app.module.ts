@@ -6,6 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import {MatSliderModule} from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+
 import { AppComponent } from './app.component';
 import { EstimationComponent } from './estimation/estimation.component';
 
@@ -21,7 +24,9 @@ import { EstimationComponent } from './estimation/estimation.component';
         MatIconModule,
         MatCardModule,
         MatSliderModule,
-        FormsModule
+        FormsModule,
+        MatButtonModule,
+        MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

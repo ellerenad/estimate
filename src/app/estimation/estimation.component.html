@@ -1,5 +1,4 @@
 <mat-card class="wrapper" *ngIf="estimation" (dblclick)="edit.emit(estimation)">
-  <h2>{{ estimation.title }}</h2>
   <h2>{{ estimation.estimator }}</h2>
   <mat-card class="item">
     <div class="label"> Complexity: {{formatEstimationLabel(estimation.complexity)}} </div>
