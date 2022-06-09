@@ -12,4 +12,12 @@ export class Estimation {
     this.estimator = estimator;
   }
 
+  reset(): void {
+    this.estimation = "NA";
+    this.complexity = 0;
+    this.effort  = 0;
+    this.uncertainty = 0;
+    this.risk = 0;
+  }
+
 }

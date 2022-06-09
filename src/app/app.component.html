@@ -7,11 +7,18 @@
     <mat-label>Name:</mat-label>
     <input matInput id="username" name="username" #username value="">
   </mat-form-field>
-  <button (click)="newEstimation(username.value)" mat-button>
+  <button (click)="newEstimator(username.value)" mat-button>
     <mat-icon>add</mat-icon> Add Estimator
   </button>
   <button (click)="revealEstimations()" mat-button>
-    <mat-icon>ready</mat-icon> Reveal estimations
+    <mat-icon>done</mat-icon> Reveal estimations
+  </button>
+  <mat-form-field  appearance="fill">
+    <mat-label>Task:</mat-label>
+    <input matInput id="task" name="task" #task value="">
+  </mat-form-field>
+  <button (click)="newEstimationTask(task.value)" mat-button>
+    <mat-icon>fiber_new</mat-icon> New task to estimate
   </button>
   <h2> We are estimating: {{session.title}} </h2>
   <div class="container">

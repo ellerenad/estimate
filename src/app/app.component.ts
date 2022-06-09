@@ -12,24 +12,10 @@ export class AppComponent {
   currentEstimation?: Estimation;
   session: Session = {
     title: 'First Task',
-    estimations: [{
-                                                   estimator: 'Enrique',
-                                                   complexity: 3,
-                                                   effort: 1,
-                                                   uncertainty: 2,
-                                                   risk: 3,
-                                                   isVisible: false
-                                                 },{
-                                                   estimator: 'Luz',
-                                                   complexity: 3,
-                                                   effort: 1,
-                                                   uncertainty: 2,
-                                                   risk: 3,
-                                                   isVisible: false
-                                                 }]
+    estimations: []
   }
 
-  newEstimation(estimatorName: string): void{
+  newEstimator(estimatorName: string): void{
     this.currentEstimation = new Estimation(estimatorName);
     this.session.estimations.push(this.currentEstimation);
   }
@@ -37,6 +23,16 @@ export class AppComponent {
   revealEstimations(): void {
     if(this.session && this.session.estimations){
       this.session.estimations.forEach(estimation => estimation.isVisible = true);
+    }
+  }
+
+  newEstimationTask(task: string): void {
+    if(this.session && this.session.estimations){
+          this.session.estimations.forEach(estimation => {
+            estimation.reset();
+            estimation.isVisible = false;
+          });
+      this.session.title = task;
     }
   }
 }
