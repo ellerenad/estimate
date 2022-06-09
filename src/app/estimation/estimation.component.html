@@ -1,19 +1,20 @@
 <mat-card class="wrapper" *ngIf="estimation" (dblclick)="edit.emit(estimation)">
   <h2>{{ estimation.estimator }}</h2>
+  <div>Estimation: {{estimation.estimation}}</div>
   <mat-card class="item">
     <div class="label"> Complexity: {{formatEstimationLabel(estimation.complexity)}} </div>
-    <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.complexity"></mat-slider>
+    <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.complexity" (change)="dimensionChanged()"></mat-slider>
   </mat-card>
   <mat-card class="item">
     <div class="label"> Effort: {{formatEstimationLabel(estimation.effort)}} </div>
-    <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.effort"></mat-slider>
+    <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.effort" (change)="dimensionChanged()"></mat-slider>
   </mat-card>
   <mat-card class="item">
     <div class="label"> Uncertainty: {{formatEstimationLabel(estimation.uncertainty)}} </div>
-    <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.uncertainty"></mat-slider>
+    <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.uncertainty" (change)="dimensionChanged()"></mat-slider>
   </mat-card>
   <mat-card class="item">
     <div class="label"> Risk: {{formatEstimationLabel(estimation.risk)}} </div>
-    <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.risk"></mat-slider>
+    <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.risk" (change)="dimensionChanged()"></mat-slider>
   </mat-card>
 </mat-card >
