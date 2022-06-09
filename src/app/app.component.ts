@@ -15,5 +15,12 @@ export class AppComponent {
                                   effort: 1,
                                   uncertainty: 2,
                                   risk: 3,
+                                },{
+                                  estimator: 'Luz',
+                                  title: 'First Task',
+                                  complexity: 3,
+                                  effort: 1,
+                                  uncertainty: 2,
+                                  risk: 3,
                                 }]
 }
