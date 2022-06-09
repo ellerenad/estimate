@@ -10,6 +10,9 @@
   <button (click)="newEstimation(username.value)" mat-button>
     <mat-icon>add</mat-icon> Add Estimator
   </button>
+  <button (click)="revealEstimations()" mat-button>
+    <mat-icon>ready</mat-icon> Reveal estimations
+  </button>
   <h2> We are estimating: {{session.title}} </h2>
   <div class="container">
     <app-estimation *ngFor="let estimation of session.estimations" [estimation]="estimation" > </app-estimation>

@@ -6,6 +6,7 @@ export class Estimation {
   effort: number  = 0;
   uncertainty: number = 0;
   risk: number = 0;
+  isVisible: boolean = true;
 
   constructor(estimator: string){
     this.estimator = estimator;
