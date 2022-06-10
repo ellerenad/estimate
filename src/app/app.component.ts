@@ -10,7 +10,7 @@ import { Session } from './session/session';
 export class AppComponent {
   title = 'estimation-app';
   currentEstimation?: Estimation;
-  isAdmin: boolean = false;
+  isAdmin: boolean = true;
   session: Session = {
     title: '',
     estimations: []

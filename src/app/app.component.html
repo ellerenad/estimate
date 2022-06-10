@@ -10,9 +10,6 @@
   <button (click)="newEstimator(username.value)" mat-button>
     <mat-icon>add</mat-icon> Join
   </button>
-  <button *ngIf="isAdmin" (click)="revealEstimations()" mat-button>
-    <mat-icon>done</mat-icon> Reveal estimations
-  </button>
   <div *ngIf="isAdmin" >
     <mat-form-field appearance="fill">
       <mat-label>Task:</mat-label>
@@ -20,6 +17,9 @@
     </mat-form-field>
     <button (click)="newEstimationTask(task.value)" mat-button>
       <mat-icon>fiber_new</mat-icon> New task to estimate
+    </button>
+    <button *ngIf="isAdmin" (click)="revealEstimations()" mat-button>
+      <mat-icon>done</mat-icon> Reveal estimations
     </button>
   </div>
   <h2> We are estimating: {{session.title}} </h2>
