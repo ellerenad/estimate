@@ -6,7 +6,8 @@ export class Estimation {
   effort: number  = 0;
   uncertainty: number = 0;
   risk: number = 0;
-  isVisible: boolean = true;
+  isVisible: boolean = true; // TODO change to e.g. isRevealed or isSecret?
+  isReady: boolean = false;
 
   constructor(estimator: string){
     this.estimator = estimator;
@@ -18,6 +19,7 @@ export class Estimation {
     this.effort  = 0;
     this.uncertainty = 0;
     this.risk = 0;
+    this.isReady = false;
   }
 
 }

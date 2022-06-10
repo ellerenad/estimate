@@ -82,4 +82,10 @@ export class EstimationComponent implements OnInit {
        default: return 'NA'
      }
   }
+
+  estimationReady(): void {
+    if(this.estimation){
+      this.estimation.isReady = true;
+    }
+  }
 }
