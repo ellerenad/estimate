@@ -8,18 +8,20 @@
     <input matInput id="username" name="username" #username value="">
   </mat-form-field>
   <button (click)="newEstimator(username.value)" mat-button>
-    <mat-icon>add</mat-icon> Add Estimator
+    <mat-icon>add</mat-icon> Join
   </button>
-  <button (click)="revealEstimations()" mat-button>
+  <button *ngIf="isAdmin" (click)="revealEstimations()" mat-button>
     <mat-icon>done</mat-icon> Reveal estimations
   </button>
-  <mat-form-field  appearance="fill">
-    <mat-label>Task:</mat-label>
-    <input matInput id="task" name="task" #task value="">
-  </mat-form-field>
-  <button (click)="newEstimationTask(task.value)" mat-button>
-    <mat-icon>fiber_new</mat-icon> New task to estimate
-  </button>
+  <div *ngIf="isAdmin" >
+    <mat-form-field appearance="fill">
+      <mat-label>Task:</mat-label>
+      <input matInput id="task" name="task" #task value="">
+    </mat-form-field>
+    <button (click)="newEstimationTask(task.value)" mat-button>
+      <mat-icon>fiber_new</mat-icon> New task to estimate
+    </button>
+  </div>
   <h2> We are estimating: {{session.title}} </h2>
   <div class="container">
     <app-estimation *ngFor="let estimation of session.estimations" [estimation]="estimation" > </app-estimation>
