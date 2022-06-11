@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "weestimate": {
+      "hosting": {
+        "estimation-app": [
+          "weestimate"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "weestimate"
+  }
+}
