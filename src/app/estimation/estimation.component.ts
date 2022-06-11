@@ -9,7 +9,8 @@ import { Estimation } from './estimation'
 export class EstimationComponent implements OnInit {
 
   @Input() estimation: Estimation | null = null;
-  @Output() edit = new EventEmitter<Estimation>(); // TODO Check if required
+  @Output() deleteEstimationEvent = new EventEmitter<Estimation>();
+
   LIMIT_EXTRA_SMALL: number = 4;
   LIMIT_SMALL: number = 8;
   LIMIT_MEDIUM: number = 12;

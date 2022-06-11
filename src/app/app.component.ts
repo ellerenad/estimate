@@ -45,4 +45,8 @@ export class AppComponent {
       this.session.title = task;
     }
   }
+
+  deleteEstimation(estimationToDelete: Estimation):void {
+    this.session.estimations = this.session.estimations.filter(e => e != estimationToDelete );
+  }
 }

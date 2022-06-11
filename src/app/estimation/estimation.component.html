@@ -1,4 +1,4 @@
-<mat-card class="wrapper" *ngIf="estimation" [ngClass]="{'isReady' : estimation.isReady}" (dblclick)="edit.emit(estimation)">
+<mat-card class="wrapper" *ngIf="estimation" [ngClass]="{'isReady' : estimation.isReady}">
   <h2>{{ estimation.estimator }}</h2>
   <div *ngIf="estimation.isVisible" class="container">
     <div>Estimation: {{estimation.estimation}}</div>
@@ -19,7 +19,10 @@
       <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.risk" (change)="dimensionChanged()"></mat-slider>
     </mat-card>
     <button (click)="estimationReady()" mat-button>
-      <mat-icon>checkmark</mat-icon> Ready
+      <mat-icon>checkmark</mat-icon>Ready
+    </button>
+    <button (click)="deleteEstimationEvent.emit(estimation)" mat-button>
+      <mat-icon>delete</mat-icon>Remove
     </button>
   </div>
 </mat-card >
