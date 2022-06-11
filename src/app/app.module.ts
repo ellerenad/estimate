@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { EstimationComponent } from './estimation/estimation.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EstimationComponent } from './estimation/estimation.component';
         MatSliderModule,
         FormsModule,
         MatButtonModule,
-        MatInputModule
+        MatInputModule,
+        AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

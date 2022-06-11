@@ -23,6 +23,7 @@
     </button>
   </div>
   <h2> We are estimating: {{session.title}} </h2>
+  <h2> Session id: {{ session.id}} </h2>
   <div class="container">
     <app-estimation *ngFor="let estimation of session.estimations" [estimation]="estimation" > </app-estimation>
   </div>

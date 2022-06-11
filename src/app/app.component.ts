@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Estimation } from './estimation/estimation';
 import { Session } from './session/session';
 
@@ -12,8 +13,16 @@ export class AppComponent {
   currentEstimation?: Estimation;
   isAdmin: boolean = true;
   session: Session = {
-    title: '',
-    estimations: []
+                       title: '',
+                       estimations: []
+                     };
+
+  constructor( private route: ActivatedRoute){}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+        this.session.id = params['id'];
+    });
   }
 
   newEstimator(estimatorName: string): void{

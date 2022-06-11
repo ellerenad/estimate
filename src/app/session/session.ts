@@ -1,7 +1,7 @@
 import { Estimation } from '../estimation/estimation';
 
 export interface Session {
-  id?: string,
+  id?: string | null,
   title: string,
   estimations: Estimation[]
 
