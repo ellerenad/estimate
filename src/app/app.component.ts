@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Estimation } from './estimation/estimation';
 import { Session } from './session/session';
 
@@ -14,33 +14,36 @@ export class AppComponent {
   title = 'estimation-app';
   currentEstimation?: Estimation;
   isAdmin: boolean = true;
-  session: Session = {
-                       title: '',
-                       estimations: []
-                     };
+  session = {
+                                   title: '',
+                                   id: this.generateUniqueId()
+                                   }
+  estimations: Estimation[] = new Array<Estimation>();
 
   constructor( private route: ActivatedRoute,  private store: AngularFirestore){}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
         this.session.id = params['id'];
+        //this.store.collection('session').add(this.session);
     });
   }
 
   newEstimator(estimatorName: string): void{
-    this.currentEstimation = new Estimation(estimatorName);
-    this.session.estimations.push(this.currentEstimation);
+    let estimationId = this.generateUniqueId();
+    this.currentEstimation = new Estimation(estimationId, this.session.id, estimatorName);
+    this.estimations.push(this.currentEstimation);
   }
 
   revealEstimations(): void {
-    if(this.session && this.session.estimations){
-      this.session.estimations.forEach(estimation => estimation.isVisible = true);
+    if(this.estimations){
+      this.estimations.forEach(estimation => estimation.isVisible = true);
     }
   }
 
   newEstimationTask(task: string): void {
-    if(this.session && this.session.estimations){
-          this.session.estimations.forEach(estimation => {
+    if(this.estimations){
+          this.estimations.forEach(estimation => {
             estimation.reset();
             estimation.isVisible = false;
           });
@@ -49,6 +52,11 @@ export class AppComponent {
   }
 
   deleteEstimation(estimationToDelete: Estimation):void {
-    this.session.estimations = this.session.estimations.filter(e => e != estimationToDelete );
+    this.estimations = this.estimations.filter(e => e != estimationToDelete );
+  }
+
+  generateUniqueId(): string {
+    let uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    return uniqueId;
   }
 }

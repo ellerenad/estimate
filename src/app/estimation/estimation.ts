@@ -1,6 +1,4 @@
 export class Estimation {
-  id? : string;
-  estimator: string;
   estimation?: string = "NA";
   complexity: number = 0;
   effort: number  = 0;
@@ -9,9 +7,7 @@ export class Estimation {
   isVisible: boolean = true; // TODO change to e.g. isRevealed or isSecret?
   isReady: boolean = false;
 
-  constructor(estimator: string){
-    this.estimator = estimator;
-  }
+  constructor(public id:string, public sessionId: string, public estimator: string){}
 
   reset(): void {
     this.estimation = "NA";
