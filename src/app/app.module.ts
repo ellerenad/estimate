@@ -8,7 +8,10 @@ import {MatSliderModule} from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { EstimationComponent } from './estimation/estimation.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,7 +31,10 @@ import { AppRoutingModule } from './app-routing.module';
         FormsModule,
         MatButtonModule,
         MatInputModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

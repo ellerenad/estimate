@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 import { Estimation } from './estimation/estimation';
 import { Session } from './session/session';
 
@@ -17,7 +19,7 @@ export class AppComponent {
                        estimations: []
                      };
 
-  constructor( private route: ActivatedRoute){}
+  constructor( private route: ActivatedRoute,  private store: AngularFirestore){}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
