@@ -1,21 +1,15 @@
-export class Estimation {
-  estimation?: string = "NA";
-  complexity: number = 0;
-  effort: number  = 0;
-  uncertainty: number = 0;
-  risk: number = 0;
-  isVisible: boolean = true; // TODO change to e.g. isRevealed or isSecret?
-  isReady: boolean = false;
+export interface Estimation {
+  estimation: string;
+  complexity: number;
+  effort: number;
+  uncertainty: number;
+  risk: number;
+  isVisible: boolean; // TODO change to e.g. isRevealed or isSecret?
+  isReady: boolean;
 
-  constructor(public id:string, public sessionId: string, public estimator: string){}
+  id:string;
+  sessionId: string;
+  estimator: string;
 
-  reset(): void {
-    this.estimation = "NA";
-    this.complexity = 0;
-    this.effort  = 0;
-    this.uncertainty = 0;
-    this.risk = 0;
-    this.isReady = false;
-  }
 
 }

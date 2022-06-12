@@ -28,6 +28,6 @@
     <app-estimation [estimation]="currentEstimation" (deleteEstimationEvent)="deleteEstimation($event)"> </app-estimation>
   </div>
   <div class="container">
-    <app-estimation *ngFor="let estimation of estimations" [estimation]="estimation" (deleteEstimationEvent)="deleteEstimation($event)"> </app-estimation>
+    <app-estimation *ngFor="let estimation of estimations | async" [estimation]="estimation" (deleteEstimationEvent)="deleteEstimation($event)"> </app-estimation>
   </div>
 </div>
