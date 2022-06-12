@@ -10,6 +10,7 @@ export class EstimationComponent implements OnInit {
 
   @Input() estimation: Estimation | null = null;
   @Output() deleteEstimationEvent = new EventEmitter<Estimation>();
+  @Output() estimationReadyEvent = new EventEmitter<Estimation>();
 
   LIMIT_EXTRA_SMALL: number = 4;
   LIMIT_SMALL: number = 8;
@@ -87,6 +88,7 @@ export class EstimationComponent implements OnInit {
   estimationReady(): void {
     if(this.estimation){
       this.estimation.isReady = true;
+      this.estimationReadyEvent.emit(this.estimation);
     }
   }
 }

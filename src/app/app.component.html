@@ -25,9 +25,17 @@
   <h2> We are estimating: {{(session | async)?.title}} </h2>
   <h2> Session id: {{ (session | async)?.id}} </h2>
   <div class="horizontal-container">
-    <app-estimation [estimation]="currentEstimation" (deleteEstimationEvent)="deleteEstimation($event)"> </app-estimation>
+    <app-estimation
+      [estimation]="currentEstimation"
+      (deleteEstimationEvent)="deleteEstimationEventHandler($event)"
+      (estimationReadyEvent)="estimationReadyEventHandler($event)">
+    </app-estimation>
   </div>
   <div class="container">
-    <app-estimation *ngFor="let estimation of estimations | async" [estimation]="estimation" (deleteEstimationEvent)="deleteEstimation($event)"> </app-estimation>
+    <app-estimation
+      *ngFor="let estimation of estimations | async"
+      [estimation]="estimation"
+      (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
+    </app-estimation>
   </div>
 </div>

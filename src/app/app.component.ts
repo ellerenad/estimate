@@ -33,7 +33,7 @@ export class AppComponent {
             if(!session) {
               this.store.collection('sessions').doc<Session>(this.sessionId).set(session);
             }
-          // TODO Standarize the handling with the session 
+          // TODO Standarize the handling with the session
           this.estimationsCollection = this.store.collection<Estimation>('estimations', ref => ref.where('sessionId','==', this.sessionId));
           this.estimations = this.estimationsCollection.valueChanges();
           });
@@ -58,9 +58,7 @@ export class AppComponent {
         isReady:  false,
     } as Estimation;
 
-    // this.estimations.push(this.currentEstimation);
-
-    this.estimationsCollection.add(this.currentEstimation);
+    this.estimationsCollection.doc<Estimation>(this.currentEstimation.id).set(this.currentEstimation);
   }
 
   revealEstimations(): void {
@@ -80,13 +78,17 @@ export class AppComponent {
     }
   }
 
-  deleteEstimation(estimationToDelete: Estimation):void {
+  deleteEstimationEventHandler(estimationToDelete: Estimation):void {
     //this.estimations = this.estimations.filter(e => e != estimationToDelete );
   }
 
   generateUniqueId(): string {
     let uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2);
     return uniqueId;
+  }
+
+  estimationReadyEventHandler(estimation: Estimation): void {
+    this.estimationsCollection.doc<Estimation>(estimation.id).set(estimation);
   }
 
   reset(estimation: Estimation): void {
