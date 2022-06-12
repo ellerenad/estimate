@@ -29,13 +29,13 @@ export class AppComponent {
           let session = { id: this.sessionId };
           // TODO Extract to another layer
           this.session = this.store.collection('sessions').doc<Session>(this.sessionId).valueChanges() as Observable<Session>;
-          this.session.pipe(first()).subscribe((session) => {
-            if(!session) {
+          this.session.pipe(first()).subscribe((sessionDoc) => {
+            if(!sessionDoc) {
               this.store.collection('sessions').doc<Session>(this.sessionId).set(session);
             }
-          // TODO Standarize the handling with the session
-          this.estimationsCollection = this.store.collection<Estimation>('estimations', ref => ref.where('sessionId','==', this.sessionId));
-          this.estimations = this.estimationsCollection.valueChanges();
+            // TODO Standarize the handling with the session
+            this.estimationsCollection = this.store.collection<Estimation>('estimations', ref => ref.where('sessionId','==', this.sessionId));
+            this.estimations = this.estimationsCollection.valueChanges();
           });
         }
     });
