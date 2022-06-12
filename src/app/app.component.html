@@ -36,7 +36,7 @@
     <app-estimation
       *ngFor="let estimation of estimations | async"
       [estimation]="estimation"
-      [showDetails]="showEstimationDetails"
+      [showDetails]="(session | async)?.showEstimationsDetails"
       (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
     </app-estimation>
   </div>

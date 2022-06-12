@@ -16,7 +16,6 @@ export class AppComponent {
   isAdmin: boolean = true;
   session!: Observable<Session>;
   sessionId! : string;
-  showEstimationDetails : boolean = false;
   estimationsCollection!: AngularFirestoreCollection<Estimation>;
   estimations!: Observable<Estimation[]>;
 
@@ -27,7 +26,7 @@ export class AppComponent {
     this.route.queryParams.subscribe(params => {
         this.sessionId = params['id'];
         if(this.sessionId ) {
-          let session = { id: this.sessionId };
+          let session = { id: this.sessionId, showEstimationDetails: false };
           // TODO Extract to another layer
           this.session = this.store.collection('sessions').doc<Session>(this.sessionId).valueChanges() as Observable<Session>;
           this.session.pipe(first()).subscribe((sessionDoc) => {
@@ -47,35 +46,37 @@ export class AppComponent {
     // TODO find a better way to instantiate and in general handle this
     // the problem is https://stackoverflow.com/questions/46578701/firestore-add-custom-object-to-db
     this.currentEstimation =  {
-      id:estimationId,
+      id: estimationId,
       sessionId: this.sessionId,
       estimator: estimatorName,
-       estimation: "NA",
-        complexity:  0,
-        effort:  0,
-        uncertainty:  0,
-        risk:  0,
-        isReady:  false,
+      estimation: "NA",
+      complexity: 0,
+      effort: 0,
+      uncertainty: 0,
+      risk: 0,
+      isReady: false,
     } as Estimation;
 
     this.estimationsCollection.doc<Estimation>(this.currentEstimation.id).set(this.currentEstimation);
   }
 
   revealEstimations(): void {
-    if(this.estimations){
-     // this.estimations.forEach(estimation => estimation.isVisible = true);
-    }
+    this.store.collection('sessions').doc<Session>(this.sessionId).set({showEstimationsDetails: true}, {merge : true});
   }
 
   newEstimationTask(task: string): void {
-    if(this.estimations){
-          /*this.estimations.forEach(estimation => {
-            this.reset(estimation);
-            estimation.isVisible = false;
-          });*/
-     // TODO Extract to another layer
-     this.store.collection('sessions').doc<Session>(this.sessionId).set({title: task}, {merge : true});
-    }
+    // TODO Extract to another layer
+    this.store.collection('sessions').doc<Session>(this.sessionId).set({title: task, showEstimationsDetails: false}, {merge : true});
+    let resetEstimation = this.resetEstimation();
+    this.estimationsCollection.snapshotChanges().pipe(first()).subscribe((docsEstimation: any) => {
+      docsEstimation && docsEstimation.forEach( (doc : any) => {
+        let id = doc.payload.doc.id;
+        this.estimationsCollection.doc<Estimation>(id).update(resetEstimation);
+      })
+    });
+    this.currentEstimation = Object.assign(this.currentEstimation, resetEstimation);
+
+
   }
 
   deleteEstimationEventHandler(estimationToDelete: Estimation):void {
@@ -91,12 +92,14 @@ export class AppComponent {
     this.estimationsCollection.doc<Estimation>(estimation.id).set(estimation);
   }
 
-  reset(estimation: Estimation): void {
-    estimation.estimation = "NA";
-    estimation.complexity = 0;
-    estimation.effort  = 0;
-    estimation.uncertainty = 0;
-    estimation.risk = 0;
-    estimation.isReady = false;
+  resetEstimation() {
+    return {
+                 estimation: "NA",
+                 complexity:  0,
+                 effort:  0,
+                 uncertainty:  0,
+                 risk:  0,
+                 isReady:  false,
+       }
   }
 }
