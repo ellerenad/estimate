@@ -12,7 +12,7 @@ import { Session } from './session/session';
 })
 export class AppComponent {
   title = 'estimation-app';
-  currentEstimation?: Estimation;
+  currentEstimation!: Estimation;
   isAdmin: boolean = true;
   session!: Observable<Session>;
   sessionId! : string;
@@ -36,10 +36,11 @@ export class AppComponent {
     });
   }
 
-  newEstimator(estimatorName: string): void{
+  newEstimation(estimatorName: string): void{
     let estimationId = this.generateUniqueId();
     this.currentEstimation = new Estimation(estimationId, this.sessionId, estimatorName);
-    this.estimations.push(this.currentEstimation);
+
+    // this.estimations.push(this.currentEstimation);
   }
 
   revealEstimations(): void {
