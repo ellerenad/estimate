@@ -1,6 +1,6 @@
 <mat-card class="wrapper" *ngIf="estimation" [ngClass]="{'isReady' : estimation.isReady}">
   <h2>{{ estimation.estimator }}</h2>
-  <div *ngIf="estimation.isVisible" class="container">
+  <div *ngIf="showDetails" class="container">
     <div>Estimation: {{estimation.estimation}}</div>
     <mat-card class="item">
       <div class="label"> Complexity: {{formatEstimationLabel(estimation.complexity)}} </div>

@@ -9,6 +9,7 @@ import { Estimation } from './estimation'
 export class EstimationComponent implements OnInit {
 
   @Input() estimation: Estimation | null = null;
+  @Input() showDetails: boolean = false;
   @Output() deleteEstimationEvent = new EventEmitter<Estimation>();
   @Output() estimationReadyEvent = new EventEmitter<Estimation>();
 

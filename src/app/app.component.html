@@ -27,6 +27,7 @@
   <div class="horizontal-container">
     <app-estimation
       [estimation]="currentEstimation"
+      [showDetails]="true"
       (deleteEstimationEvent)="deleteEstimationEventHandler($event)"
       (estimationReadyEvent)="estimationReadyEventHandler($event)">
     </app-estimation>
@@ -35,6 +36,7 @@
     <app-estimation
       *ngFor="let estimation of estimations | async"
       [estimation]="estimation"
+      [showDetails]="showEstimationDetails"
       (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
     </app-estimation>
   </div>

@@ -16,6 +16,7 @@ export class AppComponent {
   isAdmin: boolean = true;
   session!: Observable<Session>;
   sessionId! : string;
+  showEstimationDetails : boolean = false;
   estimationsCollection!: AngularFirestoreCollection<Estimation>;
   estimations!: Observable<Estimation[]>;
 
@@ -54,7 +55,6 @@ export class AppComponent {
         effort:  0,
         uncertainty:  0,
         risk:  0,
-        isVisible:  true, // TODO change to e.g. isRevealed or isSecret?
         isReady:  false,
     } as Estimation;
 
