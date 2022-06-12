@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, first } from 'rxjs';
 import { Estimation } from './estimation/estimation';
 import { Session } from './session/session';
 
@@ -14,24 +14,31 @@ export class AppComponent {
   title = 'estimation-app';
   currentEstimation?: Estimation;
   isAdmin: boolean = true;
-  session = {
-                                   title: '',
-                                   id: this.generateUniqueId()
-                                   }
+  session!: Observable<Session>;
+  sessionId! : string;
   estimations: Estimation[] = new Array<Estimation>();
 
   constructor( private route: ActivatedRoute,  private store: AngularFirestore){}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-        this.session.id = params['id'];
-        //this.store.collection('session').add(this.session);
+        this.sessionId = params['id'];
+        if(this.sessionId ) {
+          let session = { id: this.sessionId };
+          // TODO Extract to another layer
+          this.session = this.store.collection('sessions').doc<Session>(this.sessionId).valueChanges() as Observable<Session>;
+          this.session.pipe(first()).subscribe((session) => {
+            if(!session) {
+              this.store.collection('sessions').doc<Session>(this.sessionId).set(session);
+            }
+          });
+        }
     });
   }
 
   newEstimator(estimatorName: string): void{
     let estimationId = this.generateUniqueId();
-    this.currentEstimation = new Estimation(estimationId, this.session.id, estimatorName);
+    this.currentEstimation = new Estimation(estimationId, this.sessionId, estimatorName);
     this.estimations.push(this.currentEstimation);
   }
 
@@ -47,7 +54,8 @@ export class AppComponent {
             estimation.reset();
             estimation.isVisible = false;
           });
-      this.session.title = task;
+     // TODO Extract to another layer
+     this.store.collection('sessions').doc<Session>(this.sessionId).set({title: task}, {merge : true});
     }
   }
 
