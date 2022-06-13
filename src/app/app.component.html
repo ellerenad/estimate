@@ -28,7 +28,7 @@
     <app-estimation
       [estimation]="currentEstimation"
       [showDetails]="true"
-      (deleteEstimationEvent)="deleteEstimationEventHandler($event)"
+      (deleteEstimationEvent)="deleteCurrentEstimationEventHandler()"
       (estimationReadyEvent)="estimationReadyEventHandler($event)">
     </app-estimation>
   </div>

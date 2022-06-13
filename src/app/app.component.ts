@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, BehaviorSubject, first } from 'rxjs';
@@ -12,7 +12,7 @@ import { Session } from './session/session';
 })
 export class AppComponent {
   title = 'estimation-app';
-  currentEstimation!: Estimation;
+  currentEstimation!: Estimation | null;
   currentTaskId!: string | undefined;
   isAdmin: boolean = true;
   session!: Observable<Session>;
@@ -90,11 +90,17 @@ export class AppComponent {
 
   resetCurrentEstimation() : void {
     let resetEstimation = this.resetEstimation();
-    this.currentEstimation = Object.assign(this.currentEstimation, resetEstimation);
+    if(this.currentEstimation){
+      this.currentEstimation = Object.assign(this.currentEstimation, resetEstimation);
+    }
   }
 
   deleteEstimationEventHandler(estimationToDelete: Estimation):void {
-    //this.estimations = this.estimations.filter(e => e != estimationToDelete );
+    this.estimationsCollection.doc<Estimation>(estimationToDelete.id).delete();
+  }
+
+  deleteCurrentEstimationEventHandler():void {
+     this.removeCurrentEstimation();
   }
 
   generateUniqueId(): string {
@@ -115,5 +121,17 @@ export class AppComponent {
                  risk:  0,
                  isReady:  false,
        }
+  }
+
+  @HostListener('window:beforeunload', [ '$event' ])
+  beforeUnloadHandler(event: any) {
+    this.removeCurrentEstimation();
+  }
+
+  removeCurrentEstimation():void {
+    if(this.currentEstimation){
+      this.estimationsCollection.doc<Estimation>(this.currentEstimation.id).delete();
+      this.currentEstimation = null;
+    }
   }
 }

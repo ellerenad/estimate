@@ -2,9 +2,7 @@ Bugs:
 
 
 tasks:
-- remove estimations from the list (or load the current estimator if a session was found on the window)
-- delete current estimation from the database when the site is reloaded or the window closed?
-- enable remove estimation buttons
+
 - configure prod mode to the firebase db - due on july, 10th
 - add landing page
 - publish
@@ -22,3 +20,6 @@ tasks:
   - find better ways to define the domain objects
 - automated testing
 - pipeline
+
+nice to have /Evaluate:
+- load the current estimator if a session was found on the window
