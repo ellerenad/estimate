@@ -28,6 +28,7 @@
     <app-estimation
       [estimation]="currentEstimation"
       [showDetails]="true"
+      [disabled]="!editCurrentEstimationEnabled"
       (deleteEstimationEvent)="deleteCurrentEstimationEventHandler()"
       (estimationReadyEvent)="estimationReadyEventHandler($event)">
     </app-estimation>

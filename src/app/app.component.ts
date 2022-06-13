@@ -13,6 +13,7 @@ import { Session } from './session/session';
 export class AppComponent {
   title = 'estimation-app';
   currentEstimation!: Estimation | null;
+  editCurrentEstimationEnabled: boolean = true;
   currentTaskId!: string | undefined;
   isAdmin: boolean = true;
   session!: Observable<Session>;
@@ -41,12 +42,15 @@ export class AppComponent {
             this.estimations = this.estimationsCollection.valueChanges();
           });
 
-         this.session.subscribe((remoteSession) => {
-            if(this.currentTaskId != remoteSession.taskId){
-                 this.resetCurrentEstimation();
-                 this.currentTaskId = remoteSession.taskId;
-            }
-         });
+        this.session.subscribe((remoteSession) => {
+           if(this.currentTaskId != remoteSession.taskId){
+                this.resetCurrentEstimation();
+                this.currentTaskId = remoteSession.taskId;
+           }
+           if(remoteSession.showEstimationsDetails){
+             this.editCurrentEstimationEnabled = false;
+           }
+        });
         }
     });
   }
@@ -92,6 +96,7 @@ export class AppComponent {
     let resetEstimation = this.resetEstimation();
     if(this.currentEstimation){
       this.currentEstimation = Object.assign(this.currentEstimation, resetEstimation);
+      this.editCurrentEstimationEnabled = true;
     }
   }
 
