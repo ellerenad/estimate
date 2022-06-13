@@ -13,6 +13,7 @@ import { Session } from './session/session';
 export class AppComponent {
   title = 'estimation-app';
   currentEstimation!: Estimation;
+  currentTaskId!: string | undefined;
   isAdmin: boolean = true;
   session!: Observable<Session>;
   sessionId! : string;
@@ -26,17 +27,26 @@ export class AppComponent {
     this.route.queryParams.subscribe(params => {
         this.sessionId = params['id'];
         if(this.sessionId ) {
-          let session = { id: this.sessionId, showEstimationDetails: false };
+          let taskId = this.generateUniqueId();
+          let session = { id: this.sessionId, showEstimationDetails: false, taskId: taskId};
           // TODO Extract to another layer
           this.session = this.store.collection('sessions').doc<Session>(this.sessionId).valueChanges() as Observable<Session>;
           this.session.pipe(first()).subscribe((sessionDoc) => {
             if(!sessionDoc) {
               this.store.collection('sessions').doc<Session>(this.sessionId).set(session);
             }
+            this.currentTaskId = session.taskId;
             // TODO Standarize the handling with the session
             this.estimationsCollection = this.store.collection<Estimation>('estimations', ref => ref.where('sessionId','==', this.sessionId));
             this.estimations = this.estimationsCollection.valueChanges();
           });
+
+         this.session.subscribe((remoteSession) => {
+            if(this.currentTaskId != remoteSession.taskId){
+                 this.resetCurrentEstimation();
+                 this.currentTaskId = remoteSession.taskId;
+            }
+         });
         }
     });
   }
@@ -66,7 +76,8 @@ export class AppComponent {
 
   newEstimationTask(task: string): void {
     // TODO Extract to another layer
-    this.store.collection('sessions').doc<Session>(this.sessionId).set({title: task, showEstimationsDetails: false}, {merge : true});
+    let taskId = this.generateUniqueId();
+    this.store.collection('sessions').doc<Session>(this.sessionId).set({title: task, showEstimationsDetails: false, taskId: taskId }, {merge : true});
     let resetEstimation = this.resetEstimation();
     this.estimationsCollection.snapshotChanges().pipe(first()).subscribe((docsEstimation: any) => {
       docsEstimation && docsEstimation.forEach( (doc : any) => {
@@ -74,9 +85,12 @@ export class AppComponent {
         this.estimationsCollection.doc<Estimation>(id).update(resetEstimation);
       })
     });
+   this.resetCurrentEstimation();
+  }
+
+  resetCurrentEstimation() : void {
+    let resetEstimation = this.resetEstimation();
     this.currentEstimation = Object.assign(this.currentEstimation, resetEstimation);
-
-
   }
 
   deleteEstimationEventHandler(estimationToDelete: Estimation):void {
