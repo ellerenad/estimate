@@ -1,6 +1,5 @@
 Bugs:
-- click "new task to estimate"
-  - current: ready estimations in other windows are not reset
+
 
 tasks:
 - remove estimations from the list (or load the current estimator if a session was found on the window)
