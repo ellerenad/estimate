@@ -23,3 +23,4 @@ tasks:
 
 nice to have /Evaluate:
 - load the current estimator if a session was found on the window
+- there is a flick/flickering on change of information e.g. when an estimation is ready
