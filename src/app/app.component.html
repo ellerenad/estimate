@@ -7,7 +7,7 @@
     <mat-label>Name:</mat-label>
     <input matInput id="username" name="username" #username value="">
   </mat-form-field>
-  <button (click)="newEstimation(username.value)" mat-button>
+  <button [disabled]="!username.value || currentEstimation" (click)="newEstimation(username.value)" mat-button>
     <mat-icon>add</mat-icon> Join
   </button>
   <div *ngIf="isAdmin" >

@@ -4,6 +4,7 @@ Bugs:
 tasks:
 - remove estimations from the list (or load the current estimator if a session was found on the window)
 - delete current estimation from the database when the site is reloaded or the window closed?
+- enable remove estimation buttons
 - add landing page
 - publish
 - buy domain and link it
