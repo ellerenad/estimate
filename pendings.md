@@ -16,4 +16,8 @@ tasks:
   - estimator after "admin" things
 - test in mobile devices
 - add share link
-
+- refactor: 
+  - extract to another layer all the references to firebase
+  - find better ways to define the domain objects
+- automated testing
+- pipeline
