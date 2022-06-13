@@ -10,6 +10,7 @@ tasks:
 - buy domain and link it
 - change layout to horizontal instead of vertical
   - the sliders? or everything?
+- calculate a general estimation of the group
 - review layout in general
   - hide "admin" things?
   - estimator after "admin" things
