@@ -29,6 +29,7 @@
       [estimation]="currentEstimation"
       [showDetails]="true"
       [disabled]="!editCurrentEstimationEnabled"
+      [layout] = "'horizontal'"
       (deleteEstimationEvent)="deleteCurrentEstimationEventHandler()"
       (estimationReadyEvent)="estimationReadyEventHandler($event)">
     </app-estimation>

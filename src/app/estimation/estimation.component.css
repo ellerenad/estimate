@@ -5,4 +5,9 @@
 
 .mat-slider {
   width: 100%;
-  }
+}
+
+.horizontal .item {
+   display: inline-block;
+}
+

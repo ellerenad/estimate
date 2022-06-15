@@ -11,6 +11,7 @@ export class EstimationComponent implements OnInit {
   @Input() estimation: Estimation | null = null;
   @Input() showDetails: boolean | undefined = false;
   @Input() disabled: boolean = false;
+  @Input() layout: string = 'vertical';
   @Output() deleteEstimationEvent = new EventEmitter<Estimation>();
   @Output() estimationReadyEvent = new EventEmitter<Estimation>();
 

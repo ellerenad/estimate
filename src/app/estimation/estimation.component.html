@@ -1,28 +1,36 @@
-<mat-card class="wrapper" *ngIf="estimation" [ngClass]="{'isReady' : estimation.isReady}">
+<mat-card class="wrapper" *ngIf="estimation" [ngClass]="{'isReady' : estimation.isReady, 'horizontal' : layout === 'horizontal'}">
   <h2>{{ estimation.estimator }}</h2>
   <div *ngIf="showDetails" class="container">
-    <div>Estimation: {{estimation.estimation}}</div>
-    <mat-card class="item">
-      <div class="label"> Complexity: {{formatEstimationLabel(estimation.complexity)}} </div>
-      <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.complexity" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
-    </mat-card>
-    <mat-card class="item">
-      <div class="label"> Effort: {{formatEstimationLabel(estimation.effort)}} </div>
-      <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.effort" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
-    </mat-card>
-    <mat-card class="item">
-      <div class="label"> Uncertainty: {{formatEstimationLabel(estimation.uncertainty)}} </div>
-      <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.uncertainty" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
-    </mat-card>
-    <mat-card class="item">
-      <div class="label"> Risk: {{formatEstimationLabel(estimation.risk)}} </div>
-      <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.risk" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
-    </mat-card>
-    <button *ngIf="!disabled" (click)="estimationReady()" mat-button>
-      <mat-icon>checkmark</mat-icon>Ready
-    </button>
-    <button (click)="deleteEstimationEvent.emit(estimation)" mat-button>
-      <mat-icon>delete</mat-icon>Remove
-    </button>
+    <div class="label">Estimation: {{estimation.estimation}}</div>
+    <div class="item">
+      <div class="item">
+          <mat-card class="item">
+            <div class="label"> Complexity: {{formatEstimationLabel(estimation.complexity)}} </div>
+            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.complexity" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+          </mat-card>
+          <mat-card class="item">
+            <div class="label"> Effort: {{formatEstimationLabel(estimation.effort)}} </div>
+            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.effort" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+          </mat-card>
+      </div>
+      <div class="item">
+          <mat-card class="item">
+            <div class="label"> Uncertainty: {{formatEstimationLabel(estimation.uncertainty)}} </div>
+            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.uncertainty" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+          </mat-card>
+          <mat-card class="item">
+            <div class="label"> Risk: {{formatEstimationLabel(estimation.risk)}} </div>
+            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.risk" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+          </mat-card>
+      </div>
+    </div>
+    <div class="item">
+      <button *ngIf="!disabled" (click)="estimationReady()" mat-button>
+        <mat-icon>checkmark</mat-icon>Ready
+      </button>
+      <button (click)="deleteEstimationEvent.emit(estimation)" mat-button>
+        <mat-icon>delete</mat-icon>Remove
+      </button>
+    </div>
   </div>
 </mat-card >
