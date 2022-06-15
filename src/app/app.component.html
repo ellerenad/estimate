@@ -3,13 +3,6 @@
   <span>We Estimate!</span>
 </mat-toolbar>
 <div class="content-wrapper">
-  <mat-form-field  appearance="fill">
-    <mat-label>Name:</mat-label>
-    <input matInput id="username" name="username" #username value="">
-  </mat-form-field>
-  <button [disabled]="!username.value || currentEstimation" (click)="newEstimation(username.value)" mat-button>
-    <mat-icon>add</mat-icon> Join
-  </button>
   <div *ngIf="isAdmin" >
     <mat-form-field appearance="fill">
       <mat-label>Task:</mat-label>
@@ -22,6 +15,13 @@
       <mat-icon>done</mat-icon> Reveal estimations
     </button>
   </div>
+  <mat-form-field  appearance="fill">
+    <mat-label>Name:</mat-label>
+    <input matInput id="username" name="username" #username value="">
+  </mat-form-field>
+  <button [disabled]="!username.value || currentEstimation" (click)="newEstimation(username.value)" mat-button>
+    <mat-icon>add</mat-icon> Join
+  </button>
   <h2> We are estimating: {{(session | async)?.title}} </h2>
   <h2> Session id: {{ (session | async)?.id}} </h2>
   <div class="horizontal-container">
