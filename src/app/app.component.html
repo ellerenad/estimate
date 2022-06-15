@@ -8,11 +8,14 @@
       <mat-label>Task:</mat-label>
       <input matInput id="task" name="task" #task value="">
     </mat-form-field>
-    <button (click)="newEstimationTask(task.value)" mat-button>
+    <button [disabled]="!task.value" (click)="newEstimationTask(task.value)" mat-button>
       <mat-icon>fiber_new</mat-icon> New task to estimate
     </button>
     <button *ngIf="isAdmin" (click)="revealEstimations()" mat-button>
       <mat-icon>done</mat-icon> Reveal estimations
+    </button>
+    <button *ngIf="isAdmin" (click)="newEstimationTask(task.value)" mat-button>
+      <mat-icon>done</mat-icon> Reset estimations
     </button>
   </div>
   <mat-form-field  appearance="fill">

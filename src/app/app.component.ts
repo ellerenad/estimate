@@ -81,7 +81,11 @@ export class AppComponent {
   newEstimationTask(task: string): void {
     // TODO Extract to another layer
     let taskId = this.generateUniqueId();
-    this.store.collection('sessions').doc<Session>(this.sessionId).set({title: task, showEstimationsDetails: false, taskId: taskId }, {merge : true});
+    if(task) {
+      this.store.collection('sessions').doc<Session>(this.sessionId).set({title: task, showEstimationsDetails: false, taskId: taskId }, {merge : true});
+    } else {
+      this.store.collection('sessions').doc<Session>(this.sessionId).set({showEstimationsDetails: false, taskId: taskId }, {merge : true});
+    }
     let resetEstimation = this.resetEstimation();
     this.estimationsCollection.snapshotChanges().pipe(first()).subscribe((docsEstimation: any) => {
       docsEstimation && docsEstimation.forEach( (doc : any) => {
