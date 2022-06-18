@@ -20,51 +20,51 @@
       </button>
     </mat-card>
     <mat-card *ngIf="(session | async)?.showEstimationsDetails">
-      <table mat-table  >
+      <table class="summary center">
         <tr>
-          <td class="header">
+          <th class="header">
             Estimation
-          </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('NA')">
+          </th>
+          <td class="data">
             NA
           </td>
-          <td   *ngIf="estimationSummary && estimationSummary.get('XS')">
+          <td class="data">
             XS
           </td>
-          <td   *ngIf="estimationSummary && estimationSummary.get('S')">
+          <td class="data">
             S
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('M')">
+          <td class="data">
             M
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('L')">
+          <td class="data">
             L
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('XL')">
+          <td class="data">
             XL
           </td>
         </tr>
         <tr>
-          <td class="header">
+          <th class="header">
             Count
+          </th>
+          <td class="data">
+            {{(estimationSummary && estimationSummary.get('NA')) || '0'}}
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('NA')">
-            {{estimationSummary.get('NA')}}
+          <td class="data">
+            {{(estimationSummary && estimationSummary.get('XS')) || '0'}}
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('XS')">
-            {{estimationSummary.get('XS')}}
+          <td class="data">
+            {{(estimationSummary && estimationSummary.get('S')) || '0'}}
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('S')">
-            {{estimationSummary.get('S')}}
+          <td class="data">
+            {{(estimationSummary && estimationSummary.get('M')) || '0'}}
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('M')">
-            {{estimationSummary.get('M')}}
+          <td class="data">
+            {{(estimationSummary && estimationSummary.get('L')) || '0'}}
           </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('L')">
-            {{estimationSummary.get('L')}}
-          </td>
-          <td  *ngIf="estimationSummary && estimationSummary.get('XL')">
-            {{estimationSummary.get('XL')}}
+          <td class="data">
+            {{(estimationSummary && estimationSummary.get('XL')) || '0'}}
           </td>
         </tr>
       </table>
