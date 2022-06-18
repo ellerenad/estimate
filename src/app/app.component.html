@@ -23,7 +23,7 @@
       <table class="summary center">
         <tr>
           <th class="header">
-            Estimation
+            &nbsp;
           </th>
           <td class="data">
             NA
@@ -87,7 +87,7 @@
         (estimationReadyEvent)="estimationReadyEventHandler($event)">
       </app-estimation>
     </mat-card>
-    <mat-card class="container">
+    <mat-card *ngIf="(session | async)?.showEstimationsDetails" class="container">
       <app-estimation
         *ngFor="let estimation of estimations | async"
         [estimation]="estimation"
