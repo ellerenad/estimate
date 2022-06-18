@@ -19,7 +19,7 @@
         <mat-icon>done</mat-icon> Reset estimations
       </button>
     </mat-card>
-    <mat-card *ngIf="(session | async)?.showEstimationsDetails">
+    <mat-card >
       <table class="summary center">
         <tr>
           <th class="header">
@@ -46,24 +46,24 @@
         </tr>
         <tr>
           <th class="header">
-            Count
+            #
           </th>
-          <td class="data">
+          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
             {{(estimationSummary && estimationSummary.get('NA')) || '0'}}
           </td>
-          <td class="data">
+          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
             {{(estimationSummary && estimationSummary.get('XS')) || '0'}}
           </td>
-          <td class="data">
+          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
             {{(estimationSummary && estimationSummary.get('S')) || '0'}}
           </td>
-          <td class="data">
+          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
             {{(estimationSummary && estimationSummary.get('M')) || '0'}}
           </td>
-          <td class="data">
+          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
             {{(estimationSummary && estimationSummary.get('L')) || '0'}}
           </td>
-          <td class="data">
+          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
             {{(estimationSummary && estimationSummary.get('XL')) || '0'}}
           </td>
         </tr>
