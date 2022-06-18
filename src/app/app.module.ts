@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
@@ -33,7 +34,8 @@ import { AppRoutingModule } from './app-routing.module';
         MatInputModule,
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        MatTooltipModule,
 
   ],
   providers: [],

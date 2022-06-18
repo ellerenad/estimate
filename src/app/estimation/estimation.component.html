@@ -25,7 +25,11 @@
       </div>
     </div>
     <div class="item">
-      <button *ngIf="!disabled" (click)="estimationReady()" mat-button>
+      <button *ngIf="showReadyButton"
+              [disabled]="disabled"
+              (click)="estimationReady()"
+              mat-button
+              matTooltip="To enable this button, create a new task">
         <mat-icon>checkmark</mat-icon>Ready
       </button>
       <button (click)="deleteEstimationEvent.emit(estimation)" mat-button>
