@@ -5,6 +5,7 @@
 <div class="main-wrapper">
   <div class="content-wrapper center" >
     <mat-card *ngIf="isAdmin" >
+      <mat-card-title>Admin</mat-card-title>
       <mat-form-field appearance="fill">
         <mat-label>Task:</mat-label>
         <input matInput id="task" name="task" #task value="">
@@ -20,6 +21,7 @@
       </button>
     </mat-card>
     <mat-card >
+      <mat-card-title>Summary</mat-card-title>
       <table class="summary center">
         <tr>
           <th class="header">
@@ -70,8 +72,9 @@
       </table>
     </mat-card>
     <mat-card>
+      <mat-card-title>My estimation</mat-card-title>
       <div>
-      <h2> We are estimating: {{(session | async)?.title}} </h2>
+      <h3> Current task: {{(session | async)?.title}} </h3>
         <mat-form-field  appearance="fill">
           <mat-label>Name:</mat-label>
           <input matInput id="username" name="username" #username value="">
@@ -89,15 +92,18 @@
         (estimationReadyEvent)="estimationReadyEventHandler($event)">
       </app-estimation>
     </mat-card>
-    <mat-card *ngIf="(session | async)?.showEstimationsDetails" class="container">
-      <app-estimation
-        *ngFor="let estimation of estimations | async"
-        [estimation]="estimation"
-        [showDetails]="(session | async)?.showEstimationsDetails"
-        [disabled]="true"
-        [showReadyButton]="false"
-        (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
-      </app-estimation>
+    <mat-card class="container">
+      <mat-card-title>Estimations of the participants</mat-card-title>
+      <ng-container  *ngIf="(session | async)?.showEstimationsDetails">
+        <app-estimation
+          *ngFor="let estimation of estimations | async"
+          [estimation]="estimation"
+          [showDetails]="(session | async)?.showEstimationsDetails"
+          [disabled]="true"
+          [showReadyButton]="false"
+          (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
+        </app-estimation>
+      </ng-container>
     </mat-card>
   </div>
 </div>
