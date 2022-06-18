@@ -21,6 +21,8 @@ tasks:
 - write blogpost
   - architecture diagram
   - talk about realtime collaboration, serverless
+- clean up database periodically
+
 
 nice to have /Evaluate:
 - load the current estimator if a session was found on the window

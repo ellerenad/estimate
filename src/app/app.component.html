@@ -2,97 +2,101 @@
   <mat-icon>local_fire_department</mat-icon>
   <span>We Estimate!</span>
 </mat-toolbar>
-<div class="content-wrapper">
-  <div *ngIf="isAdmin" >
-    <mat-form-field appearance="fill">
-      <mat-label>Task:</mat-label>
-      <input matInput id="task" name="task" #task value="">
+<div class="main-wrapper">
+  <div class="content-wrapper center" >
+    <div *ngIf="isAdmin" >
+      <mat-form-field appearance="fill">
+        <mat-label>Task:</mat-label>
+        <input matInput id="task" name="task" #task value="">
+      </mat-form-field>
+      <button [disabled]="!task.value" (click)="newEstimationTask(task.value)" mat-button>
+        <mat-icon>fiber_new</mat-icon> New task to estimate
+      </button>
+      <div class="item">
+        <button *ngIf="isAdmin" (click)="revealEstimations()" mat-button>
+          <mat-icon>done</mat-icon> Reveal estimations
+        </button>
+        <button *ngIf="isAdmin" (click)="newEstimationTask(task.value)" mat-button>
+          <mat-icon>done</mat-icon> Reset estimations
+        </button>
+      </div>
+    </div>
+    <mat-form-field  appearance="fill">
+      <mat-label>Name:</mat-label>
+      <input matInput id="username" name="username" #username value="">
     </mat-form-field>
-    <button [disabled]="!task.value" (click)="newEstimationTask(task.value)" mat-button>
-      <mat-icon>fiber_new</mat-icon> New task to estimate
+    <button [disabled]="!username.value || currentEstimation" (click)="newEstimation(username.value)" mat-button>
+      <mat-icon>add</mat-icon> Join
     </button>
-    <button *ngIf="isAdmin" (click)="revealEstimations()" mat-button>
-      <mat-icon>done</mat-icon> Reveal estimations
-    </button>
-    <button *ngIf="isAdmin" (click)="newEstimationTask(task.value)" mat-button>
-      <mat-icon>done</mat-icon> Reset estimations
-    </button>
-  </div>
-  <mat-form-field  appearance="fill">
-    <mat-label>Name:</mat-label>
-    <input matInput id="username" name="username" #username value="">
-  </mat-form-field>
-  <button [disabled]="!username.value || currentEstimation" (click)="newEstimation(username.value)" mat-button>
-    <mat-icon>add</mat-icon> Join
-  </button>
-  <h2> We are estimating: {{(session | async)?.title}} </h2>
-  <h2> Session id: {{ (session | async)?.id}} </h2>
-  <div class="horizontal-container">
-    <app-estimation
-      [estimation]="currentEstimation"
-      [showDetails]="true"
-      [disabled]="!editCurrentEstimationEnabled"
-      [layout] = "'horizontal'"
-      (deleteEstimationEvent)="deleteCurrentEstimationEventHandler()"
-      (estimationReadyEvent)="estimationReadyEventHandler($event)">
-    </app-estimation>
-  </div>
+    <h2> We are estimating: {{(session | async)?.title}} </h2>
+    <h2> Session id: {{ (session | async)?.id}} </h2>
+    <div class="horizontal-container">
+      <app-estimation
+        [estimation]="currentEstimation"
+        [showDetails]="true"
+        [disabled]="!editCurrentEstimationEnabled"
+        [layout] = "'horizontal'"
+        (deleteEstimationEvent)="deleteCurrentEstimationEventHandler()"
+        (estimationReadyEvent)="estimationReadyEventHandler($event)">
+      </app-estimation>
+    </div>
 
-  <table mat-table *ngIf="(session | async)?.showEstimationsDetails" class="mat-elevation-z4">
-    <tr>
-      <td class="column">
-        Estimation
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('NA')">
-        NA
-      </td>
-      <td  class="column" *ngIf="estimationSummary && estimationSummary.get('XS')">
-        XS
-      </td>
-      <td  class="column" *ngIf="estimationSummary && estimationSummary.get('S')">
-        S
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('M')">
-        M
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('L')">
-        L
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('XL')">
-        XL
-      </td>
-    </tr>
-    <tr mat-row>
-      <td class="column">
-        Count
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('NA')">
-        {{estimationSummary.get('NA')}}
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('XS')">
-        {{estimationSummary.get('XS')}}
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('S')">
-        {{estimationSummary.get('S')}}
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('M')">
-        {{estimationSummary.get('M')}}
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('L')">
-        {{estimationSummary.get('L')}}
-      </td>
-      <td class="column" *ngIf="estimationSummary && estimationSummary.get('XL')">
-        {{estimationSummary.get('XL')}}
-      </td>
-    </tr>
-  </table>
-  <div class="container">
-    <app-estimation
-      *ngFor="let estimation of estimations | async"
-      [estimation]="estimation"
-      [showDetails]="(session | async)?.showEstimationsDetails"
-      [disabled]="true"
-      (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
-    </app-estimation>
+    <table mat-table *ngIf="(session | async)?.showEstimationsDetails" class="mat-elevation-z4">
+      <tr>
+        <td class="column">
+          Estimation
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('NA')">
+          NA
+        </td>
+        <td  class="column" *ngIf="estimationSummary && estimationSummary.get('XS')">
+          XS
+        </td>
+        <td  class="column" *ngIf="estimationSummary && estimationSummary.get('S')">
+          S
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('M')">
+          M
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('L')">
+          L
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('XL')">
+          XL
+        </td>
+      </tr>
+      <tr mat-row>
+        <td class="column">
+          Count
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('NA')">
+          {{estimationSummary.get('NA')}}
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('XS')">
+          {{estimationSummary.get('XS')}}
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('S')">
+          {{estimationSummary.get('S')}}
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('M')">
+          {{estimationSummary.get('M')}}
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('L')">
+          {{estimationSummary.get('L')}}
+        </td>
+        <td class="column" *ngIf="estimationSummary && estimationSummary.get('XL')">
+          {{estimationSummary.get('XL')}}
+        </td>
+      </tr>
+    </table>
+    <div class="container">
+      <app-estimation
+        *ngFor="let estimation of estimations | async"
+        [estimation]="estimation"
+        [showDetails]="(session | async)?.showEstimationsDetails"
+        [disabled]="true"
+        (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
+      </app-estimation>
+    </div>
   </div>
 </div>
