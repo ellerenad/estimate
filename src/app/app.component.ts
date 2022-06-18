@@ -29,7 +29,7 @@ export class AppComponent {
         this.sessionId = params['id'];
         if(this.sessionId ) {
           let taskId = this.generateUniqueId();
-          let session = { id: this.sessionId, showEstimationDetails: false, taskId: taskId};
+          let session = { id: this.sessionId, showEstimationsDetails: false, taskId: taskId};
           // TODO Extract to another layer
           this.session = this.store.collection('sessions').doc<Session>(this.sessionId).valueChanges() as Observable<Session>;
           this.session.pipe(first()).subscribe((sessionDoc) => {
