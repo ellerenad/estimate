@@ -1,7 +1,9 @@
 .isReady {
   background-color: lightgreen;
 }
-
+.estimation {
+  font-size: 2 em;
+}
 
 .mat-slider {
   width: 100%;

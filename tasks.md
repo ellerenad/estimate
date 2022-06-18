@@ -1,5 +1,5 @@
 Bugs:
-
+- deleting a remote estimation in the list will not delete the same estimation in the participant local
 
 tasks:
 
@@ -7,7 +7,6 @@ tasks:
 - add landing page
 - publish
 - buy domain and link it
-- calculate a general estimation of the group
 - review layout in general
   - hide "admin" things?
   - estimator after "admin" things

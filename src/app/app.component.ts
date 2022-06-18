@@ -20,7 +20,7 @@ export class AppComponent {
   sessionId! : string;
   estimationsCollection!: AngularFirestoreCollection<Estimation>;
   estimations!: Observable<Estimation[]>;
-
+  estimationSummary!: Map<string, number>;
 
   constructor( private route: ActivatedRoute,  private store: AngularFirestore){}
 
@@ -40,6 +40,7 @@ export class AppComponent {
             // TODO Standarize the handling with the session
             this.estimationsCollection = this.store.collection<Estimation>('estimations', ref => ref.where('sessionId','==', this.sessionId));
             this.estimations = this.estimationsCollection.valueChanges();
+            this.createEstimationsSummaryMap(this.estimations);
           });
 
         this.session.subscribe((remoteSession) => {
@@ -142,5 +143,17 @@ export class AppComponent {
       this.estimationsCollection.doc<Estimation>(this.currentEstimation.id).delete();
       this.currentEstimation = null;
     }
+  }
+
+  createEstimationsSummaryMap(estimations: Observable<Estimation[]>) : void {
+   estimations.subscribe(
+                          (estimations) => {
+                            let estimationSummary = new Map<string, number>;
+                            estimations && estimations.forEach(estimation  => {
+                                let currCount = estimationSummary.get(estimation.estimation) || 0;
+                                estimationSummary.set(estimation.estimation, currCount + 1);
+                            });
+                            this.estimationSummary = estimationSummary;
+                          });
   }
 }
