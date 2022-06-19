@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, BehaviorSubject, first } from 'rxjs';
 import { Estimation } from './estimation/estimation';
@@ -21,7 +22,7 @@ export class AppComponent {
   estimations!: Observable<Estimation[]>;
   estimationSummary!: Map<string, number>;
 
-  constructor( private route: ActivatedRoute,  private store: AngularFirestore){}
+  constructor( private route: ActivatedRoute,  private store: AngularFirestore, private clipboard: Clipboard){}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -154,5 +155,11 @@ export class AppComponent {
                             });
                             this.estimationSummary = estimationSummary;
                           });
+  }
+
+  shareSession() : void {
+    let currentUrl = window.location.href;
+    this.clipboard.copy(currentUrl);
+    alert('Session URL copied to the clipboard');
   }
 }

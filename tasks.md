@@ -3,11 +3,11 @@ Bugs:
 
 tasks:
 - add cookieless analytics - plausible?
-- add share link
 - configure prod mode to the firebase db - due on july, 10th
 - add landing page
 - publish
 - buy domain and link it
+- upload code to github
 - refactor: 
   - extract to another layer all the references to firebase
   - find better ways to define the domain objects
@@ -18,6 +18,8 @@ tasks:
   - talk about realtime collaboration, serverless
 - clean up database periodically
 - test in mobile devices
+- improve the way the session link is shared
+- create a dev env
 
 nice to have /Evaluate:
 - load the current estimator if a session was found on the window
