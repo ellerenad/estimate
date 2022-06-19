@@ -2,17 +2,12 @@ Bugs:
 - deleting a remote estimation in the list will not delete the same estimation in the participant local
 
 tasks:
-
+- add cookieless analytics - plausible?
+- add share link
 - configure prod mode to the firebase db - due on july, 10th
 - add landing page
 - publish
 - buy domain and link it
-- review layout in general
-  - hide "admin" things?
-  - estimator after "admin" things
-  - add paddings and center stuff
-- test in mobile devices
-- add share link
 - refactor: 
   - extract to another layer all the references to firebase
   - find better ways to define the domain objects
@@ -22,7 +17,7 @@ tasks:
   - architecture diagram
   - talk about realtime collaboration, serverless
 - clean up database periodically
-
+- test in mobile devices
 
 nice to have /Evaluate:
 - load the current estimator if a session was found on the window
