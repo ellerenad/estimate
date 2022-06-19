@@ -2,6 +2,11 @@ app-estimation{
     display: inline-block;
 }
 
+.myestimation .wrapper {
+   vertical-align: top;
+   display: inline-block;
+}
+
 .center {
     margin: auto;
     width: 80%;
