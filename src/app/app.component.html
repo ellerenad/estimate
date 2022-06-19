@@ -94,16 +94,14 @@
     </mat-card>
     <mat-card class="container">
       <mat-card-title>Estimations of the participants</mat-card-title>
-      <ng-container  *ngIf="(session | async)?.showEstimationsDetails">
-        <app-estimation
-          *ngFor="let estimation of estimations | async"
-          [estimation]="estimation"
-          [showDetails]="(session | async)?.showEstimationsDetails"
-          [disabled]="true"
-          [showReadyButton]="false"
-          (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
-        </app-estimation>
-      </ng-container>
+      <app-estimation
+        *ngFor="let estimation of estimations | async"
+        [estimation]="estimation"
+        [showDetails]="(session | async)?.showEstimationsDetails"
+        [disabled]="true"
+        [showReadyButton]="false"
+        (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
+      </app-estimation>
     </mat-card>
   </div>
 </div>
