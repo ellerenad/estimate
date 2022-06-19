@@ -15,7 +15,6 @@ export class AppComponent {
   currentEstimation!: Estimation | null;
   editCurrentEstimationEnabled: boolean = true;
   currentTaskId!: string | undefined;
-  isAdmin: boolean = true;
   session!: Observable<Session>;
   sessionId! : string;
   estimationsCollection!: AngularFirestoreCollection<Estimation>;
