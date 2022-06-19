@@ -5,7 +5,6 @@
 <div class="main-wrapper">
   <div class="content-wrapper center" >
     <mat-card *ngIf="isAdmin" >
-      <mat-card-title>Admin</mat-card-title>
       <mat-form-field appearance="fill">
         <mat-label>Task:</mat-label>
         <input matInput id="task" name="task" #task value="">
@@ -20,59 +19,7 @@
         <mat-icon>done</mat-icon> Reset estimations
       </button>
     </mat-card>
-    <mat-card >
-      <mat-card-title>Summary</mat-card-title>
-      <table class="summary center">
-        <tr>
-          <th class="header">
-            &nbsp;
-          </th>
-          <td class="data">
-            NA
-          </td>
-          <td class="data">
-            XS
-          </td>
-          <td class="data">
-            S
-          </td>
-          <td class="data">
-            M
-          </td>
-          <td class="data">
-            L
-          </td>
-          <td class="data">
-            XL
-          </td>
-        </tr>
-        <tr>
-          <th class="header">
-            #
-          </th>
-          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-            {{(estimationSummary && estimationSummary.get('NA')) || '0'}}
-          </td>
-          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-            {{(estimationSummary && estimationSummary.get('XS')) || '0'}}
-          </td>
-          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-            {{(estimationSummary && estimationSummary.get('S')) || '0'}}
-          </td>
-          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-            {{(estimationSummary && estimationSummary.get('M')) || '0'}}
-          </td>
-          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-            {{(estimationSummary && estimationSummary.get('L')) || '0'}}
-          </td>
-          <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-            {{(estimationSummary && estimationSummary.get('XL')) || '0'}}
-          </td>
-        </tr>
-      </table>
-    </mat-card>
     <mat-card class="myestimation">
-      <mat-card-title>My estimation</mat-card-title>
       <div class="wrapper">
         <h3> Current task: {{(session | async)?.title}} </h3>
           <mat-form-field  appearance="fill">
@@ -93,7 +40,58 @@
       </app-estimation>
     </mat-card>
     <mat-card class="container">
-      <mat-card-title>Estimations of the participants</mat-card-title>
+      <mat-card-title>Results</mat-card-title>
+
+      <mat-card >
+        <table class="summary center">
+          <tr>
+            <th class="header">
+              &nbsp;
+            </th>
+            <td class="data">
+              NA
+            </td>
+            <td class="data">
+              XS
+            </td>
+            <td class="data">
+              S
+            </td>
+            <td class="data">
+              M
+            </td>
+            <td class="data">
+              L
+            </td>
+            <td class="data">
+              XL
+            </td>
+          </tr>
+          <tr>
+            <th class="header">
+              #
+            </th>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('NA')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('XS')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('S')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('M')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('L')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('XL')) || '0'}}
+            </td>
+          </tr>
+        </table>
+      </mat-card>
       <app-estimation
         *ngFor="let estimation of estimations | async"
         [estimation]="estimation"
