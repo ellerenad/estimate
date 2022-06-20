@@ -44,11 +44,11 @@ export class SessionEditorComponent implements OnInit {
            });
 
          this.session.subscribe((remoteSession) => {
-            if(this.currentTaskId != remoteSession.taskId){
+            if(remoteSession && this.currentTaskId != remoteSession.taskId){
                  this.resetCurrentEstimation();
                  this.currentTaskId = remoteSession.taskId;
             }
-            if(remoteSession.showEstimationsDetails){
+            if(remoteSession && remoteSession.showEstimationsDetails){
               this.editCurrentEstimationEnabled = false;
             }
          });
