@@ -17,12 +17,14 @@ import { AppComponent } from './app.component';
 import { EstimationComponent } from './estimation/estimation.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SessionEditorComponent } from './session-editor/session-editor.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EstimationComponent,
-    SessionEditorComponent
+    SessionEditorComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
