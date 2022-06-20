@@ -1,0 +1,53 @@
+h1, p, div{
+  font-family: "Nunito Sans";
+}
+
+.main {
+  height: 60%;
+  display: flex;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  align-items: center;
+}
+
+.sentence {
+  padding: 2em;
+}
+
+.main h1 {
+  color: #fff;
+  margin: auto;
+  font-size: 50px;
+
+}
+
+h1 {
+  font-weight: 600;
+}
+
+.feature {
+  display: inline-block;
+  width: 25%;
+}
+
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.mat-flat-button.large {
+
+    font-size: 24px;
+    padding: 5px;
+}
+
+.mat-flat-button.large .mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+
+}
+
+

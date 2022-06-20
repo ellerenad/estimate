@@ -1,4 +1,5 @@
 Bugs:
+- Fix: when a new session: ERROR TypeError: remoteSession is undefined
 - deleting a remote estimation in the list will not delete the same estimation in the participant local
 
 tasks:
