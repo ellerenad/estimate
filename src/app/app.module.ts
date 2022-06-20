@@ -16,11 +16,13 @@ import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { EstimationComponent } from './estimation/estimation.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SessionEditorComponent } from './session-editor/session-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EstimationComponent
+    EstimationComponent,
+    SessionEditorComponent
   ],
   imports: [
     BrowserModule,

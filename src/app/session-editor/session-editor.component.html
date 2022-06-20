@@ -1,0 +1,108 @@
+<mat-toolbar color="primary">
+  <mat-icon>local_fire_department</mat-icon>
+  <span>We Estimate!</span>
+</mat-toolbar>
+<div class="main-wrapper">
+  <div class="content-wrapper center" >
+    <mat-card>
+      <mat-form-field appearance="fill">
+        <mat-label>Task:</mat-label>
+        <input matInput id="task" name="task" #task value="">
+      </mat-form-field>
+      <button [disabled]="!task.value" (click)="newEstimationTask(task.value)" mat-button>
+        <mat-icon>fiber_new</mat-icon> New task to estimate
+      </button>
+      <button (click)="revealEstimations()" mat-button>
+        <mat-icon>done</mat-icon> Reveal estimations
+      </button>
+      <button (click)="newEstimationTask(task.value)" mat-button>
+        <mat-icon>done</mat-icon> Reset estimations
+      </button>
+      <button (click)="shareSession()" mat-button>
+        <mat-icon>share</mat-icon> Share session
+      </button>
+    </mat-card>
+    <mat-card class="myestimation">
+      <div class="wrapper">
+        <h3> Current task: {{(session | async)?.title}} </h3>
+        <mat-form-field  appearance="fill">
+          <mat-label>Name:</mat-label>
+          <input matInput id="username" name="username" #username value="">
+        </mat-form-field>
+        <button [disabled]="!username.value || currentEstimation" (click)="newEstimation(username.value)" mat-button>
+          <mat-icon>add</mat-icon> Join
+        </button>
+      </div>
+      <app-estimation
+        [estimation]="currentEstimation"
+        [showDetails]="true"
+        [disabled]="!editCurrentEstimationEnabled"
+        [layout] = "'horizontal'"
+        (deleteEstimationEvent)="deleteCurrentEstimationEventHandler()"
+        (estimationReadyEvent)="estimationReadyEventHandler($event)">
+      </app-estimation>
+    </mat-card>
+    <mat-card class="container">
+      <mat-card-title>Results</mat-card-title>
+
+      <mat-card >
+        <table class="summary center">
+          <tr>
+            <th class="header">
+              &nbsp;
+            </th>
+            <td class="data">
+              NA
+            </td>
+            <td class="data">
+              XS
+            </td>
+            <td class="data">
+              S
+            </td>
+            <td class="data">
+              M
+            </td>
+            <td class="data">
+              L
+            </td>
+            <td class="data">
+              XL
+            </td>
+          </tr>
+          <tr>
+            <th class="header">
+              #
+            </th>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('NA')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('XS')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('S')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('M')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('L')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('XL')) || '0'}}
+            </td>
+          </tr>
+        </table>
+      </mat-card>
+      <app-estimation
+        *ngFor="let estimation of estimations | async"
+        [estimation]="estimation"
+        [showDetails]="(session | async)?.showEstimationsDetails"
+        [disabled]="true"
+        [showReadyButton]="false"
+        (deleteEstimationEvent)="deleteEstimationEventHandler($event)">
+      </app-estimation>
+    </mat-card>
+  </div>
+</div>
