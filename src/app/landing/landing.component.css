@@ -69,3 +69,9 @@ h1 {
     width: 25%;
   }
 }
+
+@media (max-width: 800px) {
+  .feature {
+    width: 100%;
+  }
+}
