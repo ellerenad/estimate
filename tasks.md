@@ -1,5 +1,4 @@
 Bugs:
-- Fix: when a new session: ERROR TypeError: remoteSession is undefined
 - deleting a remote estimation in the list will not delete the same estimation in the participant local
 
 tasks:
@@ -9,6 +8,7 @@ tasks:
 - publish
 - add timestamps to the sessions and tasks
 - buy domain and link it
+- add about section
 - upload code to github
 - refactor: 
   - extract to another layer all the references to firebase
