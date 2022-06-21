@@ -7,6 +7,7 @@ tasks:
 - configure prod mode to the firebase db - due on july, 10th
 - add landing page
 - publish
+- add timestamps to the sessions and tasks
 - buy domain and link it
 - upload code to github
 - refactor: 
