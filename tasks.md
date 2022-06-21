@@ -4,12 +4,12 @@ Bugs:
 tasks:
 - add cookieless analytics - plausible?
 - configure prod mode to the firebase db - due on july, 10th
-- add landing page
-- publish
 - add timestamps to the sessions and tasks
 - buy domain and link it
 - add about section
+- add feedback section
 - upload code to github
+- scroll automatically to the results on "reveal estimations"
 - refactor: 
   - extract to another layer all the references to firebase
   - find better ways to define the domain objects
