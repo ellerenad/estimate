@@ -27,7 +27,7 @@ h1 {
 }
 
 .feature {
-  display: inline-block;
+  display: inline-flex;
 }
 
 
