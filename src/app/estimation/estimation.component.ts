@@ -67,8 +67,11 @@ export class EstimationComponent implements OnInit {
      if(dimensionsSum <= this.LIMIT_LARGE){
           return 'L';
      }
+     if(dimensionsSum <= this.LIMIT_EXTRA_LARGE){
+          return 'XL';
+     }
 
-     return 'XL';
+     return 'XXL';
   }
 
   dimensionChanged(): void{

@@ -69,6 +69,9 @@
             <td class="data">
               XL
             </td>
+            <td class="data">
+              XXL
+            </td>
           </tr>
           <tr>
             <th class="header">
@@ -91,6 +94,9 @@
             </td>
             <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
               {{(estimationSummary && estimationSummary.get('XL')) || '0'}}
+            </td>
+            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
+              {{(estimationSummary && estimationSummary.get('XXL')) || '0'}}
             </td>
           </tr>
         </table>
