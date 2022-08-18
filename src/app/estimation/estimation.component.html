@@ -6,21 +6,21 @@
       <div class="item">
           <mat-card class="item">
             <div class="label"> Complexity: {{formatEstimationLabel(estimation.complexity)}} </div>
-            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.complexity" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+            <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.complexity" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
           </mat-card>
           <mat-card class="item">
             <div class="label"> Effort: {{formatEstimationLabel(estimation.effort)}} </div>
-            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.effort" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+            <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.effort" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
           </mat-card>
       </div>
       <div class="item">
           <mat-card class="item">
             <div class="label"> Uncertainty: {{formatEstimationLabel(estimation.uncertainty)}} </div>
-            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.uncertainty" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+            <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.uncertainty" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
           </mat-card>
           <mat-card class="item">
             <div class="label"> Risk: {{formatEstimationLabel(estimation.risk)}} </div>
-            <mat-slider min="0" max="6" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.risk" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
+            <mat-slider min="0" max="5" step="1" tickInterval="auto" [displayWith]="formatEstimationLabel" thumbLabel [(ngModel)]="estimation.risk" (change)="dimensionChanged()" [disabled]="disabled"></mat-slider>
           </mat-card>
       </div>
     </div>

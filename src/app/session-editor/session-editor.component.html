@@ -55,22 +55,19 @@
               NA
             </td>
             <td class="data">
-              XS
+              1
             </td>
             <td class="data">
-              S
+              3
             </td>
             <td class="data">
-              M
+              5
             </td>
             <td class="data">
-              L
+              8
             </td>
             <td class="data">
-              XL
-            </td>
-            <td class="data">
-              XXL
+              13
             </td>
           </tr>
           <tr>
@@ -81,22 +78,19 @@
               {{(estimationSummary && estimationSummary.get('NA')) || '0'}}
             </td>
             <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-              {{(estimationSummary && estimationSummary.get('XS')) || '0'}}
+              {{(estimationSummary && estimationSummary.get('1')) || '0'}}
             </td>
             <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-              {{(estimationSummary && estimationSummary.get('S')) || '0'}}
+              {{(estimationSummary && estimationSummary.get('3')) || '0'}}
             </td>
             <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-              {{(estimationSummary && estimationSummary.get('M')) || '0'}}
+              {{(estimationSummary && estimationSummary.get('5')) || '0'}}
             </td>
             <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-              {{(estimationSummary && estimationSummary.get('L')) || '0'}}
+              {{(estimationSummary && estimationSummary.get('8')) || '0'}}
             </td>
             <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-              {{(estimationSummary && estimationSummary.get('XL')) || '0'}}
-            </td>
-            <td *ngIf="(session | async)?.showEstimationsDetails" class="data">
-              {{(estimationSummary && estimationSummary.get('XXL')) || '0'}}
+              {{(estimationSummary && estimationSummary.get('13')) || '0'}}
             </td>
           </tr>
         </table>

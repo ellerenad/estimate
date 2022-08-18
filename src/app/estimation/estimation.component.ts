@@ -20,7 +20,6 @@ export class EstimationComponent implements OnInit {
   LIMIT_SMALL: number = 8;
   LIMIT_MEDIUM: number = 12;
   LIMIT_LARGE: number = 16;
-  LIMIT_EXTRA_LARGE: number = 20;
   NO_ESTIMATION: number = 0;
 
   constructor() { }
@@ -56,22 +55,19 @@ export class EstimationComponent implements OnInit {
         return 'NA';
      }
      if(dimensionsSum <= this.LIMIT_EXTRA_SMALL){
-        return 'XS';
+        return '1';
      }
      if(dimensionsSum <= this.LIMIT_SMALL){
-          return 'S';
+          return '3';
      }
      if(dimensionsSum <= this.LIMIT_MEDIUM){
-          return 'M';
+          return '5';
      }
      if(dimensionsSum <= this.LIMIT_LARGE){
-          return 'L';
-     }
-     if(dimensionsSum <= this.LIMIT_EXTRA_LARGE){
-          return 'XL';
+          return '8';
      }
 
-     return 'XXL';
+     return '13';
   }
 
   dimensionChanged(): void{
@@ -87,7 +83,6 @@ export class EstimationComponent implements OnInit {
        case 3: return 'M';
        case 4: return 'L';
        case 5: return 'XL';
-       case 6: return 'XXL';
        default: return 'NA'
      }
   }
